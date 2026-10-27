@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAT · Angebots-Assistent</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#142d48;background:#f2f5f9;line-height:1.5}*{box-sizing:border-box}body{margin:0}header{background:#102c4b;color:white;padding:26px max(24px,calc((100vw - 1180px)/2))}.brand{font-size:27px;font-weight:800;letter-spacing:3px}.brand span{font-size:13px;letter-spacing:1px;font-weight:400;margin-left:18px}main{max-width:1228px;margin:auto;padding:28px 24px 48px}h1{font-size:clamp(26px,4vw,36px);margin:8px 0}h2{font-size:21px;margin:0 0 18px}h3{font-size:18px}.intro{color:#53667b;margin-top:0}.notice{border:1px solid #b9cddd;background:#e8eff6;padding:14px 18px;border-radius:10px;margin:22px 0}.layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.card{background:white;border:1px solid #dce4ed;border-radius:16px;padding:26px;box-shadow:0 6px 22px #142d4806}label,legend{font-weight:600;font-size:14px}label{display:block;margin:17px 0 7px}textarea,input,select{font:inherit;border:1px solid #aebdcb;border-radius:8px;padding:12px;width:100%;background:white;color:#142d48;min-height:48px}textarea{resize:vertical;min-height:128px}button{font:inherit;font-weight:650;min-height:48px;border-radius:8px;padding:11px 17px;cursor:pointer;border:1px solid #aebdcb;background:white;color:#173b60}button:hover{background:#edf3f8}button.primary{background:#173e68;color:white;border-color:#173e68}button.primary:hover{background:#0e2d4e}:focus-visible{outline:3px solid #257fc9;outline-offset:3px}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.help{font-size:13px;color:#586b7f}fieldset{border:0;padding:0;margin:22px 0}fieldset label{display:flex;align-items:center;gap:12px;font-weight:400;margin:6px 0;min-height:44px}input[type=checkbox]{width:22px;height:22px;min-height:22px;flex-shrink:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.empty{padding:45px 12px;text-align:center;color:#586b7f}.symbol{font-size:36px;color:#8ca1b8}.tag{font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#59728d}.machine{font-size:30px;margin:6px 0}.price-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #e7edf3}.price-row span:last-child{white-space:nowrap}.total{background:#edf3f8;border-radius:10px;padding:16px;margin-top:16px}.total strong{display:block;font-size:29px}.warning{border-left:4px solid #c17a21;background:#fff7e9;padding:16px;border-radius:6px}.summary{background:#f4f7fa;padding:14px;border-radius:8px}.disclaimer{font-size:14px;border-top:1px solid #dce4ed;padding-top:16px;margin-top:24px}footer{color:#607387;font-size:13px;margin-top:25px}ul{padding-left:21px}.stale{font-size:14px;color:#785413}details{margin-top:24px}summary{cursor:pointer;min-height:44px;padding:10px 0}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;padding:12px 8px;border-bottom:1px solid #dce4ed}.scroll{overflow:auto}@media(max-width:850px){.layout{grid-template-columns:1fr}.card{padding:22px}}@media(max-width:480px){main{padding:20px 14px}.row{grid-template-columns:1fr}.brand span{display:block;margin:0}.actions button{width:100%}}@media print{header,.input-card,.notice,details,footer,.intro{display:none}.layout{display:block}.card{border:0;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<header><div class="brand">LAT <span>MASCHINENBAU · DEMO</span></div></header>
+<main>
+<div class="tag">Lead-to-Order · Von der Anfrage zum Entwurf</div>
+<h1>Der passende nächste Schritt.</h1>
+<p class="intro">Kundenbedarf erfassen. Maschine vergleichen. Angebotsentwurf prüfen.</p>
+<div class="notice"><strong>Regelbasierter Demonstrationsprototyp – keine echte KI-Anbindung</strong><br>Alle Produktdaten und Preise sind erfunden und dienen nur der Präsentation.</div>
+<div class="layout">
+<section class="card input-card"><h2>1. Kundenanfrage erfassen</h2>
+<form id="request-form" novalidate>
+<button type="button" id="example">Beispielanfrage laden</button>
+<label for="request">Kundenanfrage (Freitext, optional)</label>
+<textarea id="request" placeholder="Hier ist Platz für die Nachricht Ihres Kunden …"></textarea>
+<p class="help">Die Auswertung erfolgt ausschließlich anhand der Auswahlfelder. Der Freitext wird in dieser Version nicht automatisch verstanden.</p>
+<label for="activity">Gewünschte Tätigkeit *</label><select id="activity"><option value="">Bitte wählen</option><option value="pack">Verpacken</option><option value="label">Etikettieren</option><option value="seal">Verschließen</option></select>
+<div class="row"><div><label for="capacity">Kartons pro Stunde *</label><input id="capacity" type="number" min="1" step="1" inputmode="numeric" placeholder="z. B. 500"></div><div><label for="size">Kartongröße *</label><select id="size"><option value="">Bitte wählen</option><option value="small">klein</option><option value="medium">mittel</option><option value="large">groß</option></select></div></div>
+<p class="help">* Pflichtangaben. Bei Verpackungsmaschinen wird die Kartongröße abgeglichen. Für Etikettieren und Verschließen sind die genauen Maße noch zu prüfen.</p>
+<fieldset><legend>Gewünschte Zusatzleistungen</legend><p class="help">Angehakt = ja · nicht angehakt = nein</p><label><input id="installation" type="checkbox">Installation vor Ort · 1.500 € einmalig</label><label><input id="training" type="checkbox">Einweisung · 800 € einmalig</label><label><input id="maintenance" type="checkbox">Wartung · 2.400 € pro Jahr</label></fieldset>
+<div class="actions"><button class="primary" type="submit">Angebot erstellen</button><button type="reset">Zurücksetzen</button></div>
+<p class="help">Ihre Eingaben bleiben auf diesem Gerät. Es wird nichts automatisch verschickt oder gespeichert.</p>
+</form></section>
+<section class="card" aria-labelledby="result-title"><h2 id="result-title">2. Angebotsentwurf</h2><div id="result" aria-live="polite" aria-atomic="true"><div class="empty"><div class="symbol" aria-hidden="true">▤</div><h3>Aus Anforderungen wird ein Angebot.</h3><p>Laden Sie die Beispielanfrage oder erfassen Sie einen eigenen Bedarf.</p></div></div></section>
+</div>
+<details class="card"><summary>Fiktiver Produktkatalog & Auswahlregeln</summary><p>Ausgewählt wird die günstigste Maschine mit passender Tätigkeit und ausreichender Stundenleistung. Beim Verpacken muss zusätzlich die Größe passen. Zusatzleistungen beeinflussen die Maschinenauswahl nicht.</p><div class="scroll"><table><thead><tr><th>Maschine</th><th>Tätigkeit / Größe</th><th>Max. Kartons/h</th><th>Netto</th><th>Lieferzeit</th></tr></thead><tbody><tr><td>LAT Pack 300</td><td>Verpacken · klein</td><td>300</td><td>18.000 €</td><td>ca. 4 Wochen</td></tr><tr><td>LAT Pack 600</td><td>Verpacken · klein, mittel</td><td>600</td><td>28.000 €</td><td>ca. 6 Wochen</td></tr><tr><td>LAT Pack 1000</td><td>Verpacken · mittel, groß</td><td>1.000</td><td>45.000 €</td><td>ca. 8 Wochen</td></tr><tr><td>LAT Label 500</td><td>Nur Etikettieren · kein Verpacken</td><td>500</td><td>12.000 €</td><td>ca. 3 Wochen</td></tr><tr><td>LAT Seal 800</td><td>Nur Verschließen · kein vollständiges Verpacken</td><td>800</td><td>15.000 €</td><td>ca. 4 Wochen</td></tr></tbody></table></div></details>
+<footer>LAT · Universitätsdemo · Alle Beträge in Euro netto. Kein verbindliches Angebot.</footer>
+</main>
+<script>
+'use strict';
+const products = [
+{name:'LAT Pack 300',activity:'pack',capacity:300,sizes:['small'],price:18000,weeks:4},
+{name:'LAT Pack 600',activity:'pack',capacity:600,sizes:['small','medium'],price:28000,weeks:6},
+{name:'LAT Pack 1000',activity:'pack',capacity:1000,sizes:['medium','large'],price:45000,weeks:8},
+{name:'LAT Label 500',activity:'label',capacity:500,price:12000,weeks:3},
+{name:'LAT Seal 800',activity:'seal',capacity:800,price:15000,weeks:4}
+];
+function evaluate(input){
+ const errors=[];
+ if(!['pack','label','seal'].includes(input.activity)) errors.push('Bitte wählen Sie die gewünschte Tätigkeit.');
+ if(input.capacity === '' || input.capacity == null) errors.push('Die benötigte Leistung fehlt. Bitte geben Sie die Kartons pro Stunde an.');
+ else if(!Number.isSafeInteger(Number(input.capacity)) || Number(input.capacity)<=0) errors.push('Bitte geben Sie eine positive, ganze Anzahl Kartons pro Stunde an.');
+ if(!['small','medium','large'].includes(input.size)) errors.push('Bitte wählen Sie die Kartongröße.');
+ if(errors.length) return {status:'invalid',errors};
+ const machine=products.filter(p=>p.activity===input.activity && p.capacity>=Number(input.capacity) && (p.activity!=='pack'||p.sizes.includes(input.size))).sort((a,b)=>a.price-b.price)[0];
+ if(!machine) return {status:'unmatched'};
+ return {status:'matched',machine,installation:input.installation?1500:0,training:input.training?800:0,annual:input.maintenance?2400:0,total:machine.price+(input.installation?1500:0)+(input.training?800:0)};
+}
+if(typeof document !== 'undefined'){
+ const $=id=>document.getElementById(id), form=$('request-form'), result=$('result');
+ const initial=result.innerHTML;
+ const money=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+ const activities={pack:'Verpacken',label:'Etikettieren',seal:'Verschließen'},sizes={small:'klein',medium:'mittel',large:'groß'};
+ let generated=false;
+ function clear(){result.innerHTML=initial;generated=false;}
+ function stale(){if(generated){result.innerHTML='<div class="warning">Die Angaben wurden geändert. Bitte klicken Sie auf „Angebot erstellen“, um den Entwurf neu zu berechnen.</div>';generated=false;}}
+ form.addEventListener('input',stale);form.addEventListener('change',stale);
+ $('example').addEventListener('click',()=>{form.reset();$('request').value='Wir suchen eine Maschine, mit der wir 500 mittelgroße Kartons pro Stunde verpacken können. Wir wünschen eine Installation vor Ort und eine Einweisung der Mitarbeitenden. Bitte nennen Sie uns die Lieferzeit.';$('activity').value='pack';$('capacity').value='500';$('size').value='medium';$('installation').checked=true;$('training').checked=true;clear();});
+ form.addEventListener('reset',clear);
+ form.addEventListener('submit',event=>{
+ event.preventDefault();
+ const input={activity:$('activity').value,capacity:$('capacity').value,size:$('size').value,installation:$('installation').checked,training:$('training').checked,maintenance:$('maintenance').checked};
+ const output=evaluate(input);generated=true;
+ if(output.status==='invalid'){result.innerHTML='<div class="warning"><strong>Bitte vervollständigen Sie Ihre Angaben.</strong><ul>'+output.errors.map(e=>'<li>'+e+'</li>').join('')+'</ul></div>';return;}
+ const summary='<h3>Anforderungen</h3><div class="summary">'+activities[input.activity]+' · '+Number(input.capacity).toLocaleString('de-DE')+' Kartons/h · Größe: '+sizes[input.size]+'<br>Installation: '+(input.installation?'ja':'nein')+' · Einweisung: '+(input.training?'ja':'nein')+' · Wartung: '+(input.maintenance?'ja':'nein')+'</div>';
+ if(output.status==='unmatched'){result.innerHTML=summary+'<h3>Keine passende Maschine</h3><div class="warning">Kein Produkt im fiktiven Katalog erfüllt diese Anforderungen. Es wurde kein Angebot erstellt. Bitte klären Sie eine individuelle Lösung mit dem Vertrieb.</div>';return;}
+ const p=output.machine;
+ const row=(name,value)=>'<div class="price-row"><span>'+name+'</span><span>'+money(value)+'</span></div>';
+ result.innerHTML=summary+'<p class="tag" style="margin-top:24px">Empfohlene Maschine</p><h3 class="machine">'+p.name+'</h3><p>Günstigstes passendes Produkt für '+activities[input.activity]+' mit bis zu '+p.capacity.toLocaleString('de-DE')+' Kartons/h.'+(input.activity==='pack'?' Die Kartongröße „'+sizes[input.size]+'“ wird unterstützt.':' Die genauen Kartonmaße müssen technisch geprüft werden.')+'</p>'+row('Maschine',p.price)+(output.installation?row('Installation vor Ort',output.installation):'')+(output.training?row('Einweisung der Mitarbeitenden',output.training):'')+(!output.installation&&!output.training?'<p class="help">Keine einmaligen Zusatzleistungen gewünscht.</p>':'')+'<div class="total">Einmalige Gesamtsumme netto<strong>'+money(output.total)+'</strong></div>'+(output.annual?row('Wartung netto / Jahr (separat)',output.annual):'<p class="help">Kein Wartungsvertrag gewünscht.</p>')+'<p><strong>Maschinen-Lieferzeit:</strong> ca. '+p.weeks+' Wochen</p><h3>Offene Punkte</h3><ul><li>Genaue Kartonmaße</li><li>Versandkosten (nicht in der Summe enthalten)</li><li>Technische Anschlussbedingungen</li></ul><p class="disclaimer">Unverbindlicher Angebotsentwurf. Prüfung und Freigabe durch den Vertrieb erforderlich.</p>';
+ });
+}
+</script>
+</body></html>
